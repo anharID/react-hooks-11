@@ -1,53 +1,27 @@
-import React, { useState, useContext, createContext } from "react";
-import "./index.css";
-const themes = {
-    light: {
-        id: 1,
-        foreground: "#000000",
-        background: "#eeeeee",
-    },
-    dark: {
-        id: 2,
-        foreground: "#ffffff",
-        background: "#222222",
-    },
+import React, { useContext } from 'react'
+
+const Name = React.createContext()
+const Group = React.createContext()
+
+const Komponen = () => {
+  return (
+    <Name.Provider value={'Praktikan'}>
+      <Group.Provider value={'11'}>
+        <DataKomponen />
+      </Group.Provider>
+    </Name.Provider>
+  )
 }
-export const TemeContext = createContext();
-export const UserContext = createContext(null);
-const ThemeContext = React.createContext(themes.light);
-export default function Index() {
-    const [theme, setTheme] = useState(themes.dark);
-    const changeTheme = () => {
-        if (theme.id === themes.light.id) {
-            setTheme(themes.dark);
-        } else {
-            setTheme(themes.light);
-        }
-    };
-    return (
-        <ThemeContext.Provider value={{ theme, changeTheme }}>
-            <div className="Main" style={{
-                background:
-                    theme.background, color: theme.foreground
-            }}>
-                <p className="Text">Theme by useContext</p>
-                <p>KELOMPOK 11</p>
-                <ThemedButton />
-            </div>
-        </ThemeContext.Provider>
-    );
+
+const DataKomponen = () => {
+  const nama = useContext(Name)
+  const kelompok = useContext(Group)
+
+  return (
+    <h1 className='Main'>
+      Halo Saya {nama} dari kelompok {kelompok} telah melakukan perubahan pada useContext.
+    </h1>
+  )
 }
-function ThemedButton() {
-    const { theme, changeTheme } = useContext(ThemeContext);
-    return (
-        <button
-            className="Button"
-            style={{
-                background: theme.background, color:
-                    theme.foreground
-            }}
-            onClick={changeTheme}>
-            i am styled by theme context!
-        </button>
-    );
-}
+
+export default Komponen;
