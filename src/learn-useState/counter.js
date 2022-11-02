@@ -5,6 +5,7 @@ import "./counter.css";
 export default function Counter() {
   const [showImage, setShowImage] = useState(true);
   const [count, setCount] = useState(0);
+  const [input, setinput] = useState("");
 
   const countUp = () => {
     setCount(count + 1);
@@ -19,6 +20,10 @@ export default function Counter() {
     <div className="Main">
       <p className="Text">Counter with useState</p>
       <p>KELOMPOK 11</p>
+      <br></br>
+      <p>Ketikan sesuatu...</p>
+      <input onKeyUp={(e) => setinput(e.target.value)}></input>
+      <p>{input}</p>
       <div className="ViewImage">
         <div className="ViewImage1">
           <img className="App-logo" style={{ display: showImage === true ? "flex" : "none" }} src={logo} alt="logo" />
