@@ -80,7 +80,7 @@ export default function Index() {
         </ul>
         <form>
           <input onChange={inputHandler} />
-          <button onClick={buttonHandler}>Button</button>
+          <button onClick={buttonHandler}>{isPressed !== true ? "hide" : "show"}</button>
         </form>
         <br />
         <br />
